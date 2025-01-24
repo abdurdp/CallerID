@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity() {
 
 
         setSupportActionBar(binding.toolbar)
-        adapter = CallerAdapter { number, isBlocked ->
+        adapter = CallerAdapter { number, isBlocked,position ->
             viewModel.updateBlockedStatus(number, !isBlocked)
         }
 
@@ -160,6 +160,7 @@ class MainActivity : AppCompatActivity() {
             R.id.action_view_blocked -> {
                 val intent = Intent(this, BlockedContactsActivity::class.java)
                 startActivity(intent)
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
                 true
             }
 

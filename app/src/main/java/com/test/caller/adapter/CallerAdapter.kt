@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.test.caller.R
 import com.test.caller.model.CallerInfo
 
-class CallerAdapter(private val onBlockToggle: (String, Boolean) -> Unit) :
+class CallerAdapter(private val onBlockToggle: (String, Boolean,Int) -> Unit) :
     ListAdapter<CallerInfo, CallerAdapter.CallerViewHolder>(DIFF_CALLBACK) {
 
     private var fullList: List<CallerInfo> = emptyList()
@@ -49,12 +49,13 @@ class CallerAdapter(private val onBlockToggle: (String, Boolean) -> Unit) :
         private val numberTextView: TextView = itemView.findViewById(R.id.numberTextView)
         private val blockButton: Button = itemView.findViewById(R.id.blockButton)
 
-        fun bind(caller: CallerInfo, onBlockToggle: (String, Boolean) -> Unit) {
+        fun bind(caller: CallerInfo, onBlockToggle: (String, Boolean,Int) -> Unit) {
             nameTextView.text = caller.name
             numberTextView.text = caller.number
             blockButton.text = if (caller.isBlocked) "Unblock" else "Block"
             blockButton.setOnClickListener {
-                onBlockToggle(caller.number, caller.isBlocked)
+                onBlockToggle(caller.number, caller.isBlocked,bindingAdapterPosition)
+
             }
         }
     }

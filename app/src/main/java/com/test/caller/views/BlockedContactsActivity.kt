@@ -2,8 +2,10 @@ package com.test.caller.views
 
 import android.os.Bundle
 import android.view.View
+import android.window.OnBackInvokedDispatcher
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.test.caller.R
 import com.test.caller.adapter.CallerAdapter
 import com.test.caller.databinding.ActivityBlockedContactsBinding
 import com.test.caller.viewmodel.CallerViewModel
@@ -17,7 +19,7 @@ class BlockedContactsActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val viewModel = CallerViewModel(this.application)
-        adapter = CallerAdapter { number, isBlocked ->
+        adapter = CallerAdapter { number, isBlocked ,position->
             viewModel.updateBlockedStatus(number, !isBlocked)
         }
         binding.recyclerViewBlocked.adapter = adapter
