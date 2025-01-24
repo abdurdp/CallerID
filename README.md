@@ -24,4 +24,3 @@ The Caller App is designed to manage and display a list of contacts with feature
 - **Activity Transition Animations:** Smooth transitions when navigating between activities.  
 - **View Binding Enabled:** Simplifies view management with safe and efficient `ViewBinding`.  
 
-Feel free to contribute or provide feedback! 😊
