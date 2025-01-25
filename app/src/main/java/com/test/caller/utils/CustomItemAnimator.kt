@@ -15,7 +15,7 @@ class CustomItemAnimator : DefaultItemAnimator() {
     override fun animateRemove(holder: RecyclerView.ViewHolder?): Boolean {
         holder?.itemView?.apply {
             animate().translationX(width.toFloat()).setDuration(500).withEndAction {
-                translationX = 0f // Reset after animation
+                translationX = 0f
             }.start()
         }
         return super.animateRemove(holder)

@@ -3,31 +3,40 @@ package com.test.caller.service
 import android.app.Application
 import android.app.NotificationChannel
 import android.app.NotificationManager
-import android.content.BroadcastReceiver
 import android.content.Context
-import android.content.Intent
 import android.os.Build
-import android.telephony.TelephonyManager
+import android.telecom.Call
+import android.telecom.CallScreeningService
+
+import android.util.Log
 import androidx.core.app.NotificationCompat
+import com.test.caller.repository.ContactRepository
 import com.test.caller.viewmodel.ContactViewModel
 
-class IncomingCallReceiver : BroadcastReceiver() {
-    override fun onReceive(context: Context, intent: Intent) {
-        if (intent.action == "android.intent.action.PHONE_STATE") {
-            val state = intent.getStringExtra(TelephonyManager.EXTRA_STATE)
-            val number = intent.getStringExtra(TelephonyManager.EXTRA_INCOMING_NUMBER)
+class MyCallScreeningService : CallScreeningService() {
 
-            if (state == TelephonyManager.EXTRA_STATE_RINGING && number != null) {
-                val viewModel = ContactViewModel(context.applicationContext as Application)
-                val callerInfo = viewModel.getContactByNumber(number)
-                val name = callerInfo?.name ?: "Unknown"
-//                showIncomingCallNotification(context, name, number)
+    override fun onScreenCall(callDetails: Call.Details) {
+        Log.d("MyCallScreeningService", "onScreenCall: ${callDetails.handle}")
 
-            }
+        val number = callDetails.handle.schemeSpecificPart
+        val repository = ContactRepository(applicationContext) // Replace with your repository
+        val callerInfo = repository.getContactByNumber(number)
+
+        val response = CallResponse.Builder()
+
+        if (callerInfo != null && callerInfo.isBlocked) {
+
+            response.setDisallowCall(true)
+            Log.d("MyCallScreeningService", "Blocked call from: $number")
+        } else {
+            val name = callerInfo?.name ?: "Unknown"
+            showIncomingCallNotification(applicationContext, name, number)
+            response.setDisallowCall(false)
+            Log.d("MyCallScreeningService", "Allowed call from: $number")
         }
 
+        respondToCall(callDetails, response.build())
     }
-
     private fun showIncomingCallNotification(context: Context, name: String, number: String) {
         val notificationManager =
             context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
