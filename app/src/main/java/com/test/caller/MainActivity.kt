@@ -208,12 +208,12 @@ class MainActivity : AppCompatActivity() {
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
-                return false
+                return false // No action needed on submission
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                adapter.filter(newText.orEmpty())
-                return true
+                adapter.filter(newText.orEmpty().trim()) // Pass trimmed query text to the adapter
+                return true // Indicate the query has been handled
             }
         })
         return super.onCreateOptionsMenu(menu)

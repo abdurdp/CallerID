@@ -32,17 +32,19 @@ class ContactAdapter(private val onBlockToggle: (String, Boolean, Int) -> Unit) 
         submitList(fullList)
     }
 
+
     fun filter(query: String) {
         val filteredList = if (query.isEmpty()) {
             fullList
         } else {
             fullList.filter { contact ->
                 contact.name.contains(query, ignoreCase = true) ||
-                        contact.number.contains(query)
+                        contact.number.contains(query, ignoreCase = true) // Case-insensitive search
             }
         }
         submitList(filteredList)
     }
+
 
     class ContactViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val nameTextView: TextView = itemView.findViewById(R.id.nameTextView)
