@@ -22,5 +22,6 @@ The Caller App is designed to manage and display a list of contacts with feature
 - **Duplicate Removal:** Ensures there are no duplicate entries in the contact list.  
 - **Custom Animations:** Adds visual appeal with animations for adding/removing items.  
 - **Activity Transition Animations:** Smooth transitions when navigating between activities.  
-- **View Binding Enabled:** Simplifies view management with safe and efficient `ViewBinding`.  
+- **View Binding Enabled:** Simplifies view management with safe and efficient `ViewBinding`.
+- **Optimized for Large Contact Lists:**  Implements paging and efficient querying to handle large contact lists without performance degradation.
 
