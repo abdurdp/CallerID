@@ -56,7 +56,7 @@ class ContactAdapter(private val onBlockToggle: (String, Boolean, Int) -> Unit) 
             numberTextView.text = contact.number
             blockButton.text = if (contact.isBlocked) "Unblock" else "Block"
             blockButton.setOnClickListener {
-                onBlockToggle(contact.number, contact.isBlocked,bindingAdapterPosition)
+                onBlockToggle(contact.number, contact.isBlocked, bindingAdapterPosition)
 
             }
         }

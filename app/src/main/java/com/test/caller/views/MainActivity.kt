@@ -1,4 +1,4 @@
-package com.test.caller
+package com.test.caller.views
 
 import android.Manifest
 import android.app.role.RoleManager
@@ -22,12 +22,12 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.test.caller.R
 import com.test.caller.adapter.ContactAdapter
 import com.test.caller.databinding.ActivityMainBinding
 import com.test.caller.model.ContactInfo
 import com.test.caller.utils.CustomItemAnimator
 import com.test.caller.viewmodel.ContactViewModel
-import com.test.caller.views.BlockedContactsActivity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext

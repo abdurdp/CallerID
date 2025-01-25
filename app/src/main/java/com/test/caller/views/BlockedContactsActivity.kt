@@ -17,7 +17,7 @@ class BlockedContactsActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val viewModel = ContactViewModel(this.application)
-        adapter = ContactAdapter { number, isBlocked, position->
+        adapter = ContactAdapter { number, isBlocked, position ->
             viewModel.updateBlockedStatus(number, !isBlocked)
         }
         binding.recyclerViewBlocked.adapter = adapter

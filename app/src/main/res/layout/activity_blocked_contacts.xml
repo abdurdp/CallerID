@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".views.BlockedContactsActivity">
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewBlocked"
         android:layout_width="match_parent"
@@ -20,6 +21,6 @@
         android:gravity="center"
         android:textStyle="bold"
         android:visibility="gone"
-        android:textSize="21sp"/>
+        android:textSize="21sp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

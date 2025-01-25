@@ -1,17 +1,14 @@
 package com.test.caller.service
 
-import android.app.Application
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
 import android.os.Build
 import android.telecom.Call
 import android.telecom.CallScreeningService
-
 import android.util.Log
 import androidx.core.app.NotificationCompat
 import com.test.caller.repository.ContactRepository
-import com.test.caller.viewmodel.ContactViewModel
 
 class MyCallScreeningService : CallScreeningService() {
 
@@ -37,6 +34,7 @@ class MyCallScreeningService : CallScreeningService() {
 
         respondToCall(callDetails, response.build())
     }
+
     private fun showIncomingCallNotification(context: Context, name: String, number: String) {
         val notificationManager =
             context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
