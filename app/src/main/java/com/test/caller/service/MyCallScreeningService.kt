@@ -16,7 +16,7 @@ class MyCallScreeningService : CallScreeningService() {
         Log.d("MyCallScreeningService", "onScreenCall: ${callDetails.handle}")
 
         val number = callDetails.handle.schemeSpecificPart
-        val repository = ContactRepository(applicationContext) // Replace with your repository
+        val repository = ContactRepository(applicationContext)
         val callerInfo = repository.getContactByNumber(number)
 
         val response = CallResponse.Builder()
